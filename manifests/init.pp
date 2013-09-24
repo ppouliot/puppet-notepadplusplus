@@ -1,41 +1,30 @@
-# == Class: notepadplusplus
+# Class: notepadplusplus
 #
-# Full description of class notepadplusplus here.
+# This module downloads then installs Notepad++
 #
-# === Parameters
+# Parameters: none
 #
-# Document parameters here.
+# Actions:
 #
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
-#
-# === Variables
-#
-# Here you should define a list of variables that this module would require.
-#
-# [*sample_variable*]
-#   Explanation of how this variable affects the funtion of this class and if it
-#   has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#   External Node Classifier as a comma separated list of hostnames." (Note,
-#   global variables should not be used in preference to class parameters  as of
-#   Puppet 2.6.)
-#
-# === Examples
-#
-#  class { notepadplusplus:
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ]
-#  }
-#
-# === Authors
-#
-# Author Name <author@domain.com>
-#
-# === Copyright
-#
-# Copyright 2013 Your name here, unless otherwise noted.
-#
+
 class notepadplusplus {
 
+  $notepadpp_url  = 'http://download.tuxfamily.org/notepadplus/6.3/npp.6.3.Installer.exe'
+  $notepadpp_file = 'npp63Installer.exe'
+
+
+  windows_common::download{'Notepad-Plus-Plus':
+    url  => $notepadpp_url,
+    file => $notepadpp_file,
+  }
+
+  package { 'Notepad-Plus-Plus-msi':
+    ensure          => installed,
+    source          => "${::temp}\\${notepadpp_file}",
+    provider        => windows,
+    install_options => ['/S',],
+    require         => Commands::Download['Notepad-Plus-Plus'],
+  }
 
 }
+
