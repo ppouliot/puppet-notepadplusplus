@@ -1,6 +1,6 @@
 name    'puppet-notepadplusplus'
 version '0.1.0'
-source 'https://github.com/openstack-hyper-v/puppet-windows_notepadplusplus.git'
+source 'https://github.com/openstack-hyper-v/puppet-notepadplusplus.git'
 author 'Peter Pouliot <peter@pouliot.net>'
 license 'Apache License, Version 2.0'
 summary 'UNKNOWN'
@@ -11,3 +11,5 @@ project_page 'UNKNOWN'
 # dependency 'username/name', '>= 1.2.0'
 dependency 'joshcooper/powershell'
 dependency 'openstack-hyper-v/puppet-windows_common'
+dependency 'basti1302/windows_path'
+
