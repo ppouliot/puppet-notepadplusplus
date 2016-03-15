@@ -52,7 +52,6 @@ class notepadplusplus (
   } else {
     $notepadplusplus_path = 'C:\Program Files\NotePad++'
   }
- 
   windows_path { $notepadplusplus_path:
     ensure  => present,
     require => Package[$package],
